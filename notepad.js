@@ -17,23 +17,38 @@ describe('ColorNote', () => {
         await ($('//*[@text="Add note"]')).click();
         await $('//*[@text="Text"]').click();
         await browser.pause(6000);
-        await $("//*[@resource-id='com.socialnmobile.dictapps.notepad.color.note:id/edit_note']").setValue('Hello please enter the text');
+        await $("//*[@resource-id='com.socialnmobile.dictapps.notepad.color.note:id/edit_note']").setValue("welcome to the notepad");
         await browser.back();
         await browser.back();
         await browser.back();
         await browser.pause(8000);
 
 // Validation of the "NOTE" 
+
+
+await expect($("//*[@resource-id='com.socialnmobile.dictapps.notepad.color.note:id/title']")).toBeDisplayed();
+    await $("//*[@resource-id='com.socialnmobile.dictapps.notepad.color.note:id/title']").click();
+    
+    await browser.pause(5000);
+    await expect ($("//*[@resource-id='com.socialnmobile.dictapps.notepad.color.note:id/view_note']")).toHaveText("welcome to the notepad");
+    await browser.pause(3000);
+       await browser.back();
+      
         const savedtext = await $("//*[@resource-id='com.socialnmobile.dictapps.notepad.color.note:id/title']");
         await expect(savedtext).toBeExisting();
-        await savedtext.click()
+        await savedtext.click();
+
         await $('~More').click();
     });
 
 
     it('Delete Note', async () => {
  // Deleting the "NOTE"
+
+        await browser.pause(6000);
         await ($('//*[@text="Delete"]')).click();
+        await browser.pause(6000);
+
         await ($('//*[@text="OK"]')).click();
         await browser.pause(5000);
     });
